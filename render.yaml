@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: romax-call-api
+    env: node
+    plan: free
+    buildCommand: npm install && npx tsc --project tsconfig.server.json
+    startCommand: node dist_backend/server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        scope: project
+      - key: SESSION_SECRET
+        scope: project
+      - key: CORS_ORIGIN
+        value: https://romax-call.vercel.app
+      - key: FRONTEND_URL
+        value: https://romax-call.vercel.app
+      - key: REACT_APP_API_URL
+        value: https://romax-call-api.onrender.com
+      - key: REACT_APP_SOCKET_URL
+        value: https://romax-call-api.onrender.com
